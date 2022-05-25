@@ -1,0 +1,99 @@
+/*
+    Trabalho de TCC
+    Desenvolvido por Kezia Barros, Mateus e Leonardo Garcia
+*/
+
+*, html, body{
+    margin:0;
+    padding: 0;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+
+#ceu{
+    height: 100%;
+    background-image: url('assets/images/natureza.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+
+#chao{
+    height: 100%;
+    background-image: url('assets/images/Background.png'); 
+    background-size: cover;  
+    transition: background-position 3s;  
+    transition-timing-function: ease-in-out;
+}
+
+#residuo{
+    display: inline; 
+    margin-top: -20px;
+    position:absolute;    
+  
+}
+
+#residuo2{
+    display: inline; 
+    margin-top: -20px;
+    position:absolute;    
+  
+}
+
+#animal{
+    display: inline; 
+    margin-top: -70px;
+    position:absolute;    
+  
+}
+
+#avatar{
+    display: inline;
+    margin-top: -100px;
+    position:absolute;    
+}
+
+
+#areaJogo{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .container-fluid{
+    margin: 0;
+    padding: 0;
+  }
+
+  #ceu{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    flex-grow: 5;
+    min-height: 200px;  
+  }
+
+  #terra{
+    flex-grow:2;        
+    min-height: 200px;   
+  }
+
+  #avatar-kezia{
+    transition: margin-top 0.1s;
+    transition-timing-function: ease-out;
+}
+
+#caixa-questao{
+    position: absolute;    
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    left: 30%;   
+    top:10%;    
+    width: 600px;
+    height: 300px;
+}
+
