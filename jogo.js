@@ -66,7 +66,8 @@ function pegouResiduo(){
             novaPosicaoResiduo();  //Ganhou 
             jogoPausado = true;   
             
-            posResiduoAleatorio = Math.round(Math.random() * (4 - 1) + 1) ;
+            //Gerar uma número para pegar um residuo aleatório
+            posResiduoAleatorio = Math.round(Math.random() * ((questionario.length - 1) - 1) + 1) ;
             console.log(posResiduoAleatorio)
             
             /**
@@ -75,7 +76,16 @@ function pegouResiduo(){
             document.querySelector("#caixa-questao").style.display = "block"; //Exibi caixa de questão
             document.querySelector('#questao').textContent = questionario[posResiduoAleatorio].pergunta;
             document.querySelector('#imagem-questao').src = `./assets/images/${questionario[posResiduoAleatorio].imagemPergunta}.png` ;
+            document.querySelector('#btn1').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaCorreta}`;
+            document.querySelector('#btn2').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaErrada}`;
 
+            //Alterar as posições dos botão se par ou ímpar
+            if(posResiduoAleatorio % 0){
+                    document.querySelector('#colOrder').classList.remove('order-1');
+            }
+            else{
+                document.querySelector('#colOrder').classList.add('order-1');
+            }
         }   
 
         if( posicaoAvatar > (posicaoResiduo2 - 20) 
@@ -240,38 +250,31 @@ function novaPosicaoResiduo2(){
 }
 
 
+// ------- Necessário ter no mínimo uma questão ---------
 const questionario = [
     {
         pergunta:'Onde devemos descartar?',
         imagemPergunta:'Garrafa',
-        acertou:'Você descartou corretamente e isso evitou que essa garrafa fosse para o mar!',
-        imagemAcertou:'natureza',
-        errou:'Você descartou incorretamente e essa garafa foi para o mar!',
-        imagemErrou:'avatar-mat'
+        corSelectivaCorreta:'red',
+        corSelectivaErrada:'blue'
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',
-        acertou:'Você descartou corretamente e isso evitou que alguém usasse esse papel em alguma fogueira causando uma poluição no ar!',
-        imagemAcertou:'natureza',
-        errou:'Você descartou incorretamente e alguém usou esse papel para fazer uma fogueira que contribuiu para a poluição do ar!',
-        imagemErrou:'avatar-mat'
+        imagemPergunta:'Garrafa',  
+        corSelectivaCorreta:'red',
+        corSelectivaErrada:'blue'     
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',
-        acertou:'Você descartou corretamente e isso evitou que essa lata contaminasse o solo!',
-        imagemAcertou:'',
-        errou:'Você descartou incorretamente e essa lata agora polui o solo!',
-        imagemErrou:''
+        imagemPergunta:'Garrafa',  
+        corSelectivaCorreta:'red',
+        corSelectivaErrada:'blue'     
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',
-        acertou:'Você descartou corretamente e isso evitou que essa garrafa de vidro contaminasse o solo!',
-        imagemAcertou:'',
-        errou:'Você descartou incorretamente e essa garrafa de vidro agora poluiu o solo!',
-        imagemErrou:''
+        imagemPergunta:'Garrafa',      
+        corSelectivaCorreta:'red',
+        corSelectivaErrada:'blue' 
     },
     
 ]

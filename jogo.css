@@ -31,14 +31,14 @@ body{
 
 #residuo{
     display: inline; 
-    margin-top: -20px;
+    margin-top: -80px;
     position:absolute;    
   
 }
 
 #residuo2{
     display: inline; 
-    margin-top: -20px;
+    margin-top: -80px;
     position:absolute;    
   
 }
@@ -88,12 +88,16 @@ body{
 
 #caixa-questao{
     position: absolute;    
-    background-color: white;
-    opacity: 0.9;
+    background-color:#0006c1;
     border-radius: 10px;
-    left: 30%;   
+    left: 25%;   
     top:10%;    
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 320px;
 }
 
+button{
+    width: 150px;
+    height: 80px;
+    border-radius: 10px;
+}
