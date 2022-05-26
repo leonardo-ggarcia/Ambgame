@@ -1,17 +1,35 @@
 //Variavel global do jogo
 var jogoPausado = false;
 var modal = "";
+var vidas = 3;
+var acertos = 0;
 
 $(document).ready(function(){
+    
     //inicializa avatar
     document.querySelector("#avatar").style.marginLeft = "70px";
     document.querySelector("#residuo").style.marginLeft = `${window.innerWidth + 70}px`;
     document.querySelector("#animal").style.marginLeft = `${window.innerWidth + 100}px`;
     document.querySelector("#residuo2").style.marginLeft = `${window.innerWidth + 900}px`;
     document.querySelector("#chao").style.backgroundPosition = "1px";
-    document.querySelector("#caixa-questao").style.display = "none"; // Caixa de Questão
-  
+    document.querySelector("#caixa-questao").style.display = "none"; // Caixa de Questão 
 
+    //Quando o modal é exibido e o jogado pressionado o botao correto
+    $("#btn1").click(function(){
+        console.log("acertou")      
+        jogoPausado = false;
+        document.querySelector("#caixa-questao").style.display = "none";
+        ganharVidas();     
+    })
+
+    $("#btn2").click(function(){
+        console.log("errou")  
+        jogoPausado = false;
+        document.querySelector("#caixa-questao").style.display = "none";
+       
+        perderVidas();
+       
+    })
 
     //Adiciona animacao
    
@@ -48,6 +66,38 @@ document.addEventListener("keydown",function(e){
     }
 })
 
+function ganharVidas(){
+    if(vidas < 3){
+        if(vidas === 2){
+            document.querySelector('#coracao').src = `./assets/images/coracao_cheio.png` ;
+        }
+        else if(vidas === 1){
+            document.querySelector('#coracao').src = `./assets/images/coracao_1_vazio.png` ;
+        }
+
+        acertos++;       
+        vidas++;
+        document.querySelector('#pontuacao').textContent = `${acertos}`;
+    }        
+}
+
+function perderVidas(){
+
+    if((vidas - 1 ) > 0){
+        if(vidas === 3){
+            document.querySelector('#coracao').src = `./assets/images/coracao_1_vazio.png` ;
+        }
+        else if(vidas === 2){
+            document.querySelector('#coracao').src = `./assets/images/coracao_2_vazio.png` ;
+        }
+        vidas--;
+    }    
+    else{
+        document.querySelector('#coracao').src = `./assets/images/coracao_vazio.png` ;
+        location.href = "game_over.html";
+    }  
+}
+
 
 function pegouResiduo(){
 
@@ -57,7 +107,7 @@ function pegouResiduo(){
         let posicaoResiduo2 = posicaoAtualResiduo2();  
         let posicaoAnimal = posicaoAtualAnimal(); 
         let alturaAvatar = document.querySelector("#avatar-kezia").style.marginTop;
-        let posResiduoAleatorio = 0;
+     
         
         if( posicaoAvatar > (posicaoResiduo - 7)
             && posicaoAvatar <  (posicaoResiduo + 7)   
@@ -66,49 +116,57 @@ function pegouResiduo(){
             novaPosicaoResiduo();  //Ganhou 
             jogoPausado = true;   
             
-            //Gerar uma número para pegar um residuo aleatório
-            posResiduoAleatorio = Math.round(Math.random() * ((questionario.length - 1) - 1) + 1) ;
-            console.log(posResiduoAleatorio)
-            
-            /**
-             * Aqui é exibido o modal
-             */
-            document.querySelector("#caixa-questao").style.display = "block"; //Exibi caixa de questão
-            document.querySelector('#questao').textContent = questionario[posResiduoAleatorio].pergunta;
-            document.querySelector('#imagem-questao').src = `./assets/images/${questionario[posResiduoAleatorio].imagemPergunta}.png` ;
-            document.querySelector('#btn1').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaCorreta}`;
-            document.querySelector('#btn2').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaErrada}`;
-
-            //Alterar as posições dos botão se par ou ímpar
-            if(posResiduoAleatorio % 0){
-                    document.querySelector('#colOrder').classList.remove('order-1');
-            }
-            else{
-                document.querySelector('#colOrder').classList.add('order-1');
-            }
+            montarItensModal();
         }   
 
         if( posicaoAvatar > (posicaoResiduo2 - 20) 
             && posicaoAvatar <  (posicaoResiduo2 + 20)
             && alturaAvatar != "-200px"
-            ){       
-            novaPosicaoResiduo2(); //Ganhou           
+            ){     
+              
+            novaPosicaoResiduo2();   
         }   
 
         if (posicaoAvatar > (posicaoAnimal - 35)
             && posicaoAvatar <  (posicaoAnimal + 35)
             && alturaAvatar != "-200px"
             ){       
-                console.log('perdeu')
+            perderVidas();  
             novaPosicaoAnimal(); //Perdeu           
         }   
 
         if (posicaoResiduo < 0 || posicaoResiduo < 0){       
             novaPosicaoResiduo();
-            novaPosicaoResiduo2();    //Perdeu      
+            novaPosicaoResiduo2();  
+            perderVidas();  //Perdeu      
         }   
     }
 }
+
+
+function montarItensModal(){
+    let posResiduoAleatorio = 0;
+    //Gerar uma número para pegar um residuo aleatório
+    posResiduoAleatorio = Math.round(Math.random() * ((questionario.length - 1) - 1) + 1) ;
+    
+    /**
+     * Aqui é exibido o modal
+     */
+    document.querySelector("#caixa-questao").style.display = "block"; //Exibi caixa de questão
+    document.querySelector('#questao').textContent = questionario[posResiduoAleatorio].pergunta;
+    document.querySelector('#imagem-questao').src = `./assets/images/${questionario[posResiduoAleatorio].imagemPergunta}.png` ;
+    document.querySelector('#btn1').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaCorreta}`;
+    document.querySelector('#btn2').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaErrada}`;
+
+    //Alterar as posições dos botão se par ou ímpar
+    if(posResiduoAleatorio % 0){
+            document.querySelector('#colOrder').classList.remove('order-1');
+    }
+    else{
+        document.querySelector('#colOrder').classList.add('order-1');
+    }
+}
+
 
 function pular(){    
 
@@ -249,7 +307,6 @@ function novaPosicaoResiduo2(){
     document.querySelector("#residuo2").style.marginLeft = `${window.innerWidth + (Math.round(Math.random() * (900 - 100) + 100))}px`;
 }
 
-
 // ------- Necessário ter no mínimo uma questão ---------
 const questionario = [
     {
@@ -278,3 +335,4 @@ const questionario = [
     },
     
 ]
+
