@@ -13,7 +13,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <!--Fontawesome-->
-    <script src="https://kit.fontawesome.com/83e73cb2ac.js" crossorigin="anonymous"></script>
+    <!--load all Font Awesome styles -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
  
 
     <style>
@@ -27,20 +28,30 @@
           src: url("assets/fonts/RoccoRegular.otf")
       }
 
+      body{
+        background: url('assets/images/fundo_game_over.jpg') no-repeat;
+        background-size: cover;
+      }
+
       .gameOver{
         font-family: "School";
+        font-size: 6.5em;
       }
     </style>
 
     
   </head>
-  <body>
-   
-    <div class="container-fluid">
-      <h1 class="gameOver">Fim do Jogo</h1>
-    </div>
-
-    
+  <body>   
+    <div class="container-fluid vh-100">
+      <div class="d-flex vh-100 p-0 flex-column justify-content-center align-items-center">
+        <h1 class="gameOver">Fim do Jogo</h1>
+        <div>
+          <a href="jogo.html" class="btn btn-sm">
+            <i class="fa-solid fa-rotate-left fa-4x"></i>
+          </a>
+        </div>
+      </div>      
+    </div>    
 
     <!-- Optional JavaScript; choose one of the two! -->
 

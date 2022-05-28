@@ -3,32 +3,58 @@ var jogoPausado = false;
 var modal = "";
 var vidas = 3;
 var acertos = 0;
+var mensagem_acertar = `Parabéns, você descartou corretamente! Descartar corretamente contribuiu para que
+    seu resíduo não fosse destinado no lugar inadqueado e sem contaminação ao meio ambiente
+`;
+
+var mensagem_errar = `Infelizmente, você descartou incorretamente! Descartar incorretamente contribuiu para que
+    seu resíduo fosse destinado no lugar inadqueado e contaminado o meio ambiente
+`;
 
 $(document).ready(function(){
     
     //inicializa avatar
+    document.querySelector("#caixa-questao").style.display = "none"; // Caixa de Questão
     document.querySelector("#avatar").style.marginLeft = "70px";
     document.querySelector("#residuo").style.marginLeft = `${window.innerWidth + 70}px`;
     document.querySelector("#animal").style.marginLeft = `${window.innerWidth + 100}px`;
     document.querySelector("#residuo2").style.marginLeft = `${window.innerWidth + 900}px`;
     document.querySelector("#chao").style.backgroundPosition = "1px";
-    document.querySelector("#caixa-questao").style.display = "none"; // Caixa de Questão 
+    
+  
+    
 
-    //Quando o modal é exibido e o jogado pressionado o botao correto
+    //Quando o modal é exibido e o jogador pressiona o botao correto
     $("#btn1").click(function(){
-        console.log("acertou")      
-        jogoPausado = false;
-        document.querySelector("#caixa-questao").style.display = "none";
-        ganharVidas();     
+
+        esconderBotoes();
+        document.querySelector('#questao').textContent = mensagem_acertar;
+        document.querySelector('#imagem-questao').src = `./assets/images/acertou.jpeg` ;  
+        setInterval(() => {            
+            jogoPausado = false;
+            ganharVidas();
+            document.querySelector("#caixa-questao").style.display = "none";
+            esconderBotoes(false);
+             
+        }, 9000);
+
+       
     })
 
-    $("#btn2").click(function(){
-        console.log("errou")  
-        jogoPausado = false;
-        document.querySelector("#caixa-questao").style.display = "none";
+    //Quando o modal é exibido e o jogador pressiona o botao errado
+
+    $("#btn2").click(function(){         
        
-        perderVidas();
-       
+        esconderBotoes();
+        document.querySelector('#questao').textContent = mensagem_errar;
+        document.querySelector('#imagem-questao').src = `./assets/images/errou.jpeg` ;
+        setTimeout(() => {
+            jogoPausado = false;
+            perderVidas();
+            document.querySelector("#caixa-questao").style.display = "none";
+            esconderBotoes(false);
+        }, 9000);
+
     })
 
     //Adiciona animacao
@@ -42,6 +68,20 @@ $(document).ready(function(){
      * Fácil: 450
      */   
 })
+
+
+function esconderBotoes(devoEsconder = true){
+
+    if(devoEsconder){
+        document.querySelector("#btn1").style.display = "none";
+        document.querySelector("#btn2").style.display = "none";
+    }
+    else{
+        document.querySelector("#btn1").style.display = "block";
+        document.querySelector("#btn2").style.display = "block";
+    }
+   
+}
 
 
 //Movimenta avatar
@@ -158,12 +198,13 @@ function montarItensModal(){
     document.querySelector('#btn1').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaCorreta}`;
     document.querySelector('#btn2').style.backgroundColor = `${questionario[posResiduoAleatorio].corSelectivaErrada}`;
 
+   
     //Alterar as posições dos botão se par ou ímpar
-    if(posResiduoAleatorio % 0){
-            document.querySelector('#colOrder').classList.remove('order-1');
+    if(posResiduoAleatorio % 0){        
+        document.querySelector('#colOrder').classList.add('order-1');
     }
     else{
-        document.querySelector('#colOrder').classList.add('order-1');
+        document.querySelector('#colOrder').classList.remove('order-1');
     }
 }
 
@@ -311,28 +352,43 @@ function novaPosicaoResiduo2(){
 const questionario = [
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',
+        imagemPergunta:'plastico',
+        imagemCorreto:'',
+        imagemErrado:'',
         corSelectivaCorreta:'red',
         corSelectivaErrada:'blue'
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',  
-        corSelectivaCorreta:'red',
+        imagemPergunta:'papel',  
+        imagemCorreto:'',
+        imagemErrado:'',
+        corSelectivaCorreta:'blue',
+        corSelectivaErrada:'red'     
+    },
+    {
+        pergunta:'Onde devemos descartar?',
+        imagemPergunta:'lata',  
+        imagemCorreto:'',
+        imagemErrado:'',
+        corSelectivaCorreta:'#ffe000',//Amarelo
         corSelectivaErrada:'blue'     
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',  
-        corSelectivaCorreta:'red',
-        corSelectivaErrada:'blue'     
+        imagemPergunta:'lata1',   
+        imagemCorreto:'',
+        imagemErrado:'',   
+        corSelectivaCorreta:'#ffe000',
+        corSelectivaErrada:'red' 
     },
     {
         pergunta:'Onde devemos descartar?',
-        imagemPergunta:'Garrafa',      
-        corSelectivaCorreta:'red',
-        corSelectivaErrada:'blue' 
-    },
-    
+        imagemPergunta:'vidro', 
+        imagemCorreto:'',
+        imagemErrado:'',     
+        corSelectivaCorreta:'green',
+        corSelectivaErrada:'#ffe000' //Amarelo
+    },    
 ]
 

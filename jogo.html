@@ -25,8 +25,8 @@
 
       @font-face {
           font-family: "Roboto";
-          src: url("assets/fonts/RoccoRegular.otf")
-      }
+          src: url("assets/fonts/RobotoBold.ttf")
+      }      
 
       #tituloJogo{
         font-family: "School";
@@ -43,7 +43,7 @@
         font-family: "Roboto";
         font-size: 25px;
         text-transform: uppercase;
-        color: #ffffff;
+        color: #3a3636;
       }
 
       #pontuacao{
@@ -51,6 +51,13 @@
        font-size: 30px;
        color:#b87803;
       }
+
+      .pontuacaoTexto{
+        font-weight: bold;
+        font-size: 30px;
+        color:#b87803;
+      }
+
     </style>
 
     
@@ -62,13 +69,13 @@
         <div class="" id="ceu">
           <div>               
             <i class="fa-solid fa-trophy" style="font-size:30px; color: #b87803;"></i>     
-             <span id="pontuacao"> 0 </span>               
+             <span id="pontuacao"> 0 </span>                     
           </div>
           <!-- Caixa de Pergunta -->
           <div id="caixa-questao" class="p-4">
             <div id="questao" class="texto text-center"></div>
             <div class="row">
-              <img src="assets/images/1.png" width="150" height="150" id="imagem-questao" style="object-fit: contain;">
+              <img src="" width="150" height="150" id="imagem-questao" style="object-fit: contain;">
             </div>
             <div id="botao-questao" class="row justify-content-around align-items-center">
               <div class="col-3" id="colOrder">
@@ -105,8 +112,13 @@
            </div>
         </div>
       </div>
+
+      
+    
+
     </div>
 
+ 
     
 
     <!-- Optional JavaScript; choose one of the two! -->
