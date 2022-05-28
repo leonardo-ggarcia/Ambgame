@@ -33,6 +33,12 @@
         background-size: cover;
       }
 
+      .texto2{
+        font-family: "Roboto";
+        font-size: 70px;
+        color:rgb(210, 88, 88);
+      }
+
       .texto{
         font-family: "Roboto";
         font-size: 70px;
@@ -66,31 +72,67 @@
         animation-fill-mode: forwards;
       }
 
-      #apre-mat{
+      #verde{
         margin-left: -500px;
         animation-name: aparecer;
         animation-duration: 3s;
         animation-fill-mode: forwards;
       }
 
-      #saudacao{
+      #vermelha{
         margin-left: -500px;
         animation-name: aparecer;
         animation-duration: 2s;
         animation-fill-mode: forwards;
       }
 
-      #missao, #texto1, #texto2, #texto3, #imagem4{
-        display: none;
-      }
+      #amarela{
+        margin-left: -500px;
+        animation-name: aparecer;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+      }      
 
       .center {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        background-color: #d5d5d5d5;
-        border-radius: 10px;      
+        width: 50%;      
+        background-size: contain;
+      }
+
+      img#i-vermelha:hover{
+        background-color: rgba(203, 255, 220, 0.61);
+        background-size: cover;
+        width: 1000px!important;
+        height: 400px!important;
+        border-radius: 20px;
+      }
+
+        img#i-verde:hover{
+        background-color: rgba(203, 255, 220, 0.61);
+        background-size: cover;
+        width: 1000px!important;
+        height: 400px!important;
+        border-radius: 20px;
+        margin-left:-400px;
+      }
+
+      img#i-amarela:hover{
+        background-color: rgba(203, 255, 220, 0.61);
+        background-size: cover;
+        width: 1000px!important;
+        height: 400px!important;
+        border-radius: 20px;
+        margin-left:-400px;
+      }
+
+      img#i-azul:hover{
+        background-color: rgba(203, 255, 220, 0.61);
+        background-size: cover;
+        width: 1000px!important;
+        height: 400px!important;
+        border-radius: 20px;        
       }
 
     </style>
@@ -101,93 +143,48 @@
     <div class="container-fluid vh-100 p-2">      
 
       <div class="row"> 
-        <div id="saudacao">
-          <h1 class="texto" style="width: 500px;">Hey, Amigos!</h1>    
-        </div>     
-
-        <div id="texto1">
-          <h1 class="texto"><span style="color:rgb(207, 124, 0);">Pegue</span> os sacos espalhados pelo campo,</h1>    
-        </div>
-      </div>
-
-      <div class="row text-center">
-        <div id="texto2">
-          <h1 class="texto">e pule os animais. Cuidado com eles!</h1>    
-        </div>
-      </div>
-
-      <div class="row">
-        <div id="texto3">
-          <h1 class="texto"><span style="color:rgb(207, 124, 0);">Descarte</span> o lixo na lixeira correta.</h1>    
-        </div>
-      </div>
-
-      <div class="row justify-content-center align-items-center">
-        <div id="imagem4">
-          <img src="assets/images/lixeiras.png" class="center" width="800" height="200">      
-        </div>
+        <div id="vermelha">         
+          <img src="assets/images/vermelha.png" width="500" height="200" id="i-vermelha">  
+        </div>   
       </div>
 
       <div class="row justify-content-between align-items-center">
         <div class="col-5">
           <div id="mat">
-            <img src="assets/images/avatar-mat.png" width="600" height="300">  
+            <a href="jogo.html" class="btn btn-sm">
+              <span class="texto2">Jogar </span>
+              <i class="fa-solid fa-play fa-5x" style="color:rgb(210, 88, 88);"></i>
+            </a>
           </div>  
         </div>
 
         <div class="col-6" >
-          <div id="apre-mat">
-            <h1 class="texto">Eu sou o <span style="color:#f00;">Super Mat!</span></h1>  
+          <div id="verde">            
+            <img src="assets/images/verde.png" width="500" height="200" id="i-verde">  
           </div>         
-        </div>
-        
+        </div>        
       </div>
 
       <div class="row justify-content-between align-items-center">
-        <div class="col-12" >
-          <div id="missao">
-            <h1 class="texto">Preciso da sua ajuda para salvar o planeta!</h1>  
+        <div class="col-5">
+          <div id="azul">
+            <img src="assets/images/azul.png" width="500" height="200" id="i-azul">  
+          </div>  
+        </div>
+
+        <div class="col-6" >
+          <div id="amarela">            
+            <img src="assets/images/amarela.png" width="500" height="200" id="i-amarela">  
           </div>         
         </div>        
-      </div>      
-     
+      </div>
+
     </div>    
 
     <script>
-
-      setTimeout(() => {
-        document.querySelector("#missao").style.display = "block"
-      }, 4000)
-
-      setTimeout(() => {
-        document.querySelector("#saudacao").style.display = "none"
-      }, 8000)
-
-      setTimeout(() => {
-        document.querySelector("#apre-mat").style.display = "none"
-      }, 8500)
-
-      setTimeout(() => {
-        document.querySelector("#missao").style.display = "none"
-         document.querySelector("#mat").style.display = "none"
-      }, 9000)
-    
-      setTimeout(() => {
-        document.querySelector("#texto1").style.display = "block"
-      }, 10000)
-
-      setTimeout(() => {
-        document.querySelector("#texto2").style.display = "block"
-        document.querySelector("#texto3").style.display = "block"
-      }, 10500)
-
-      setTimeout(() => {
-        document.querySelector("#imagem4").style.display = "block"       
-      }, 10800)
-
-      setTimeout(() => {
-        location.href = "jogo.html";       
-      }, 20000)
+      // setTimeout(() => {
+      //   location.href = "jogo.html";       
+      // }, 30000)
 
     </script>
 
