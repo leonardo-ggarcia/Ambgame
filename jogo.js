@@ -4,11 +4,10 @@ var modal = "";
 var vidas = 3;
 var acertos = 0;
 var mensagem_acertar = `Parabéns, você descartou corretamente! Descartar corretamente contribuiu para que
-    seu resíduo não fosse destinado no lugar inadqueado e sem contaminação ao meio ambiente
-`;
+    seu resíduo não fosse destinado no lugar inadequado e não contamine o meio ambiente`
 
-var mensagem_errar = `Infelizmente, você descartou incorretamente! Descartar incorretamente contribuiu para que
-    seu resíduo fosse destinado no lugar inadqueado e contaminado o meio ambiente
+var mensagem_errar = `Infelizmente, você descartou incorretamente! Descartar incorretamente contribui para que
+    seu resíduo vá parar no lugar inadequado e contamine o meio ambiente
 `;
 
 $(document).ready(function(){
